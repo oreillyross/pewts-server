@@ -6,7 +6,12 @@ const mongoose = require('mongoose')
       description: String,
       source: String,
       href: String,
-      crawlDate: Date
+      crawlDate: {
+       type: Date,
+       default: Date.now(),
+       
+      },
+      unread: Boolean
 });
 
 module.exports = mongoose.model('events', eventSchema);

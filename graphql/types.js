@@ -1,12 +1,15 @@
 export const typeDefs = ` 
   
+  scalar Date
+  
   type Event {
     id: ID!
     title: String
     description: String
     source: String
-    crawlDate: Float
+    crawlDate: Date
     href: String
+    unread: Boolean
   }
   
   type Query {
@@ -15,9 +18,10 @@ export const typeDefs = `
   }
   
   type Mutation {
-    createEvent(title: String!, description: String!, source: String!, crawlDate: Float!, href: String!): Event
-    updateEvent(id: ID!, title: String!, description: String!, source: String!, crawlDate: Float!, href: String!): Event
+    createEvent(id: ID!, title: String!, description: String!, source: String!, crawlDate: Float!, href: String!): Event!
+    updateEvent(id: ID!, title: String, description: String, source: String, crawlDate: Float, href: String): Event
     deleteEvent(id: ID!): Event
+    markAsRead(id: ID!, unread: Boolean): Event
   }
   
 `

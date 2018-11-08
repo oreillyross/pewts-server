@@ -1,12 +1,13 @@
 import { GraphQLServer} from 'graphql-yoga'
 import events from './db/models/event'
 import mongoose from 'mongoose'
-import mlab from './constants'
+import { mongoConnection } from './constants'
 import { typeDefs } from './graphql/types'
 import { resolvers } from './graphql/resolvers'
 
+
 //TODO check if you need to put this in callback to server.start
-const db = mongoose.connect(mlab, { useNewUrlParser: true });
+const db = mongoose.connect(mongoConnection, { useNewUrlParser: true });
 
 const opts = {
   endpoint: '/graphql'

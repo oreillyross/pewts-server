@@ -6,7 +6,6 @@ const naharnet = require('./sources/naharnet')
 const dailystar = require('./sources/dailystar')
 const nna = require('./sources/nna')
 
-
 //TODO Add nna search
 //TODO Add Twitter search
 //TODO Add Google keyword search
