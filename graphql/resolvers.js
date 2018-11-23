@@ -1,8 +1,21 @@
 import EventModel from '../db/models/event'
+import TagModel from '../db/models/tag'
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
+import {
+  GraphQLEmail,
+  GraphQLURL,
+  GraphQLDateTime,
+  GraphQLLimitedString,
+  GraphQLPassword,
+  GraphQLUUID
+} from 'graphql-custom-types';
 
 export const resolvers = {
+  
+  URL: GraphQLURL,
+  
+  DateTime: GraphQLDateTime,
   
   Date: new GraphQLScalarType({
     name: 'Date',
@@ -22,13 +35,19 @@ export const resolvers = {
   }),
   
   
+  
+  
   Query: {
     allEvents: async() => {
       return (await EventModel.find({}))
     },
+    allTags: async() => {
+      return (await TagModel.find({}))
+    },
     getEvent: async(_, { id }) => {
       return (await EventModel.findById(id))
-    }
+    },
+    
   },
   Mutation: {
     createEvent: async(_, ...event) => {
@@ -46,6 +65,13 @@ export const resolvers = {
     },
     markAsRead: async(_, {id, unread}) => {
       return EventModel.findOneAndUpdate({_id: id}, { unread }, {new: true})
+    },
+    addTagsToEvent: async (_, {id, tags}) => {
+      return EventModel.findOneAndUpdate({_id: id}, {tags}, {new: true})
+    },
+    createTag: async(_, {title}) => {
+      let tagEvent = new TagModel({title})
+      return (await tagEvent.save())
     }
   }
 }

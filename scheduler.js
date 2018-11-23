@@ -4,9 +4,9 @@ const updateDatabase = require('./importData')
 
 updateDatabase()
 
-const f = () => { updateDatabase() }
+// const f = () => { updateDatabase() }
 
-const schedule = setInterval(f, 1000 * 60 * 10)
+// const schedule = setInterval(f, 1000 * 60 * 10)
 
 // setTimeout(() => {
 //     clearInterval(schedule)

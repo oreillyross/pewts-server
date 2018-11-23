@@ -1,27 +1,60 @@
 export const typeDefs = ` 
   
-  scalar Date
+  type Query {
+    allEvents: [Event!]!
+    allTags: [Tag!]!
+    getTag(id: ID!): Tag 
+    getEvent(id: ID!): Event
+  }
+
+ type Mutation {
+    createEvent(input: InputEvent): Event!
+    updateEvent(input: UpdateEvent): Event
+    deleteEvent(id: ID!): Event
+    markAsRead(id: ID!, unread: Boolean): Event
+    addTagsToEvent(id: ID!, tags: [ID]): Event
+    createTag(title: String!): Tag!
+  }
+
+  input InputEvent {
+    id: ID!, 
+    title: String!, 
+    description: String!, 
+    source: String!, 
+    crawlDate: Float!, 
+    href: URL!
+    unread: Boolean = True
+  }
   
+  input UpdateEvent {
+    id: ID!, 
+    title: String, 
+    description: String, 
+    source: String, 
+    crawlDate: Float,
+    href: URL
+  }
+
   type Event {
     id: ID!
     title: String
     description: String
     source: String
     crawlDate: Date
-    href: String
+    href: URL
     unread: Boolean
+    tags: [Tag!]!
   }
   
-  type Query {
-    allEvents: [Event!]!
-    getEvent(id: ID!): Event
+  type Tag {
+    id: ID!
+    title: String
+    event: [Event]!
   }
   
-  type Mutation {
-    createEvent(id: ID!, title: String!, description: String!, source: String!, crawlDate: Float!, href: String!): Event!
-    updateEvent(id: ID!, title: String, description: String, source: String, crawlDate: Float, href: String): Event
-    deleteEvent(id: ID!): Event
-    markAsRead(id: ID!, unread: Boolean): Event
-  }
+ scalar Date
+ scalar DateTime
+ scalar URL
+ 
   
 `

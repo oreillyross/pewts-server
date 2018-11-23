@@ -27,23 +27,29 @@ const getMainSources = async url => {
 //getMainSources(href).then(data => console.log(data))
 
 const getArticleData = async article => {
-
-    const response = await fetch(article)
-    const html = await response.text()
-    let $ = cheerio.load(html)
-    const title = $('div ol li:nth-child(3)').text().trim()
-    const description = $('.article-content p').text().trim()
-    const source = 'National News Agency'
-    const crawlDate = new Date()
-    const href = article
-    return {
-
-        title,
-        description,
-        source,
-        href,
-        crawlDate
-    }
+    
+    try {
+        const response = await fetch(article)
+        const html = await response.text()
+        let $ = cheerio.load(html)
+        const title = $('div ol li:nth-child(3)').text().trim()
+        const description = $('.article-content p').text().trim()
+        const source = 'National News Agency'
+        const crawlDate = new Date()
+        const href = article
+         return {
+    
+            title,
+            description,
+            source,
+            href,
+            crawlDate
+        }
+    } catch (err) {
+        console.error(err)
+    }    
+       
+    
 
 }
 

@@ -11,7 +11,10 @@ const mongoose = require('mongoose')
        default: Date.now(),
        
       },
-      unread: Boolean
+      unread: Boolean,
+      tags: [{
+        title: String   
+      }]
 });
 
 module.exports = mongoose.model('events', eventSchema);

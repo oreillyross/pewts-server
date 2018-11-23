@@ -25,6 +25,7 @@ const getMainSources = async url => {
 
 const getArticleData = async article => {
   
+   try {
     const response = await fetch(article)
     const html = await response.text()
     let $ = cheerio.load(html)
@@ -36,7 +37,9 @@ const getArticleData = async article => {
             'href': article, 
             'crawlDate': new Date()
            }
-    
+   } catch (err) {
+     console.err(err)
+   }
 } 
 
 
