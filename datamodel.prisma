@@ -1,0 +1,47 @@
+type Scenario @model {
+  id: ID! @unique
+  title: String!
+  description: String!
+  indicators: [Indicator!]! @relation(name: "IndicatorOnScenario")
+}
+
+type Category @model {
+  event: Event @relation(name: "CategoryOnEvent")
+  id: ID! @unique
+  name: String!
+}
+
+type Descriptors @model {
+  events: [Event!]! @relation(name: "EventOnDescriptors")
+  id: ID! @unique
+  tag: String!
+}
+
+type Event @model {
+  categories: [Category!]! @relation(name: "CategoryOnEvent")
+  category: String!
+  crawlDate: DateTime!
+  description: String!
+  descriptorses: [Descriptors!]! @relation(name: "EventOnDescriptors")
+  eventDate: DateTime!
+  href: String
+  id: ID! @unique
+  indicators: [Indicator!]! @relation(name: "IndicatorOnEvent")
+  unread: Boolean
+  source: String
+  title: String!
+}
+
+type Indicator @model {
+  events: [Event!]! @relation(name: "IndicatorOnEvent")
+  id: ID! @unique
+  keyword: Keyword @relation(name: "KeywordOnIndicator")
+  scenarios: [Scenario!]! @relation(name: "IndicatorOnScenario")
+  title: String!
+}
+
+type Keyword @model {
+  id: ID! @unique
+  indicators: [Indicator!]! @relation(name: "KeywordOnIndicator")
+  searchterm: String! @unique
+}

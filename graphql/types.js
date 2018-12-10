@@ -1,60 +1,57 @@
-export const typeDefs = ` 
-  
-  type Query {
-    allEvents: [Event!]!
-    allTags: [Tag!]!
-    getTag(id: ID!): Tag 
-    getEvent(id: ID!): Event
-  }
+export const typeDefs = `
 
- type Mutation {
-    createEvent(input: InputEvent): Event!
-    updateEvent(input: UpdateEvent): Event
-    deleteEvent(id: ID!): Event
-    markAsRead(id: ID!, unread: Boolean): Event
-    addTagsToEvent(id: ID!, tags: [ID]): Event
-    createTag(title: String!): Tag!
-  }
+type Scenario {
+  id: ID! 
+  title: String!
+  description: String!
+  indicators: [Indicator!]! 
+}
 
-  input InputEvent {
-    id: ID!, 
-    title: String!, 
-    description: String!, 
-    source: String!, 
-    crawlDate: Float!, 
-    href: URL!
-    unread: Boolean = True
-  }
-  
-  input UpdateEvent {
-    id: ID!, 
-    title: String, 
-    description: String, 
-    source: String, 
-    crawlDate: Float,
-    href: URL
-  }
+type Category  {
+  event: Event 
+  id: ID! 
+  name: String!
+}
 
-  type Event {
-    id: ID!
-    title: String
-    description: String
-    source: String
-    crawlDate: Date
-    href: URL
-    unread: Boolean
-    tags: [Tag!]!
-  }
-  
-  type Tag {
-    id: ID!
-    title: String
-    event: [Event]!
-  }
-  
- scalar Date
- scalar DateTime
- scalar URL
- 
-  
+type Descriptors  {
+  events: [Event!]! 
+  id: ID! 
+  tag: String!
+}
+
+type Event {
+  categories: [Category!]! 
+  category: String!
+  crawlDate: DateTime!
+  description: String!
+  descriptorses: [Descriptors!]! 
+  eventDate: DateTime!
+  href: String
+  id: ID! 
+  indicators: [Indicator!]! 
+  unread: Boolean
+  source: String
+  title: String!
+}
+
+type Indicator {
+  events: [Event!]! 
+  id: ID! 
+  keyword: Keyword 
+  scenarios: [Scenario!]! 
+  title: String!
+}
+
+type Keyword {
+  id: ID! 
+  indicators: [Indicator!]! 
+  searchterm: String! 
+}
+
+type Query {
+    hello(name: String): String
+}
+
+
+scalar DateTime
 `

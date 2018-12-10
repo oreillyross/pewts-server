@@ -1,0 +1,6 @@
+endpoint: https://horizon-on-heroku-4a01aace27.herokuapp.com
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
