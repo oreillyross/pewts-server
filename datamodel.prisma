@@ -19,11 +19,11 @@ type Descriptors @model {
 
 type Event @model {
   categories: [Category!]! @relation(name: "CategoryOnEvent")
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
   descriptorses: [Descriptors!]! @relation(name: "EventOnDescriptors")
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   id: ID! @unique
   indicators: [Indicator!]! @relation(name: "IndicatorOnEvent")

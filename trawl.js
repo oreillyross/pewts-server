@@ -1,12 +1,12 @@
 const { prisma } = require('./generated/prisma-client')
-const nna = require('./sources/nna')
+const naharnet = require('./sources/naharnet')
 
 
-function updateDatabase() {
+function updateDatabase(source) {
 
     console.info('Update Database Just Ran', new Date().toString())
 
-    nna.then(data => {
+    source.then(data => {
             data.map((event, i) => {
                 async function go() {
                     const exists = await prisma.$exists.event({title: event.title})
@@ -28,7 +28,7 @@ function updateDatabase() {
     )
 }
 
-updateDatabase()
+updateDatabase(naharnet)
 
 
 

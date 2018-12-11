@@ -926,11 +926,11 @@ export interface CategoryCreateInput {
 
 export interface EventCreateWithoutIndicatorsInput {
   categories?: CategoryCreateManyWithoutEventInput;
-  category: String;
+  category?: String;
   crawlDate: DateTimeInput;
   description: String;
   descriptorses?: DescriptorsCreateManyWithoutEventsInput;
-  eventDate: DateTimeInput;
+  eventDate?: DateTimeInput;
   href?: String;
   unread?: Boolean;
   source?: String;
@@ -987,11 +987,11 @@ export interface EventUpsertWithWhereUniqueWithoutIndicatorsInput {
 }
 
 export interface EventCreateWithoutCategoriesInput {
-  category: String;
+  category?: String;
   crawlDate: DateTimeInput;
   description: String;
   descriptorses?: DescriptorsCreateManyWithoutEventsInput;
-  eventDate: DateTimeInput;
+  eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorCreateManyWithoutEventsInput;
   unread?: Boolean;
@@ -1076,10 +1076,10 @@ export interface KeywordSubscriptionWhereInput {
 
 export interface EventCreateWithoutDescriptorsesInput {
   categories?: CategoryCreateManyWithoutEventInput;
-  category: String;
+  category?: String;
   crawlDate: DateTimeInput;
   description: String;
-  eventDate: DateTimeInput;
+  eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorCreateManyWithoutEventsInput;
   unread?: Boolean;
@@ -1251,11 +1251,11 @@ export interface IndicatorUpdateWithWhereUniqueWithoutKeywordInput {
 
 export interface EventCreateInput {
   categories?: CategoryCreateManyWithoutEventInput;
-  category: String;
+  category?: String;
   crawlDate: DateTimeInput;
   description: String;
   descriptorses?: DescriptorsCreateManyWithoutEventsInput;
-  eventDate: DateTimeInput;
+  eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorCreateManyWithoutEventsInput;
   unread?: Boolean;
@@ -1720,10 +1720,10 @@ export interface CategorySubscriptionPayloadSubscription
 }
 
 export interface Event {
-  category: String;
+  category?: String;
   crawlDate: DateTimeOutput;
   description: String;
-  eventDate: DateTimeOutput;
+  eventDate?: DateTimeOutput;
   href?: String;
   id: ID_Output;
   unread?: Boolean;
@@ -2178,10 +2178,10 @@ export interface KeywordSubscription
 }
 
 export interface EventPreviousValues {
-  category: String;
+  category?: String;
   crawlDate: DateTimeOutput;
   description: String;
-  eventDate: DateTimeOutput;
+  eventDate?: DateTimeOutput;
   href?: String;
   id: ID_Output;
   unread?: Boolean;

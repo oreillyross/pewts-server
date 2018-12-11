@@ -307,11 +307,11 @@ input DescriptorsWhereUniqueInput {
 
 type Event {
   categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
   descriptorses(where: DescriptorsWhereInput, orderBy: DescriptorsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Descriptors!]
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   id: ID!
   indicators(where: IndicatorWhereInput, orderBy: IndicatorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Indicator!]
@@ -328,11 +328,11 @@ type EventConnection {
 
 input EventCreateInput {
   categories: CategoryCreateManyWithoutEventInput
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
   descriptorses: DescriptorsCreateManyWithoutEventsInput
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   indicators: IndicatorCreateManyWithoutEventsInput
   unread: Boolean
@@ -356,11 +356,11 @@ input EventCreateOneWithoutCategoriesInput {
 }
 
 input EventCreateWithoutCategoriesInput {
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
   descriptorses: DescriptorsCreateManyWithoutEventsInput
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   indicators: IndicatorCreateManyWithoutEventsInput
   unread: Boolean
@@ -370,10 +370,10 @@ input EventCreateWithoutCategoriesInput {
 
 input EventCreateWithoutDescriptorsesInput {
   categories: CategoryCreateManyWithoutEventInput
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   indicators: IndicatorCreateManyWithoutEventsInput
   unread: Boolean
@@ -383,11 +383,11 @@ input EventCreateWithoutDescriptorsesInput {
 
 input EventCreateWithoutIndicatorsInput {
   categories: CategoryCreateManyWithoutEventInput
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
   descriptorses: DescriptorsCreateManyWithoutEventsInput
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   unread: Boolean
   source: String
@@ -425,10 +425,10 @@ enum EventOrderByInput {
 }
 
 type EventPreviousValues {
-  category: String!
+  category: String
   crawlDate: DateTime!
   description: String!
-  eventDate: DateTime!
+  eventDate: DateTime
   href: String
   id: ID!
   unread: Boolean

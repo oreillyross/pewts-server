@@ -1,3 +1,4 @@
+const { prisma } = require('../generated/prisma-client')
 import {
   GraphQLEmail,
   GraphQLURL,
@@ -12,7 +13,21 @@ export const resolvers = {
   DateTime: GraphQLDateTime,
   
   Query: {
-     hello:  async (_, { name }) => `Hello ${name || 'World'}`,
+     indicators: async () => await prisma.indicators({})
+  },
+  
+  Mutation: {
+    createIndicator: async (_, {data}) => {
+       return await prisma.createIndicator({title: data.title}) 
+    }
+    
+  }
+  
+  ,
+     Node: {
+    __resolveType() {
+      return null;
+    }
   }
   
   
