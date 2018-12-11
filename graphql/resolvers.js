@@ -1,14 +1,14 @@
 const { prisma } = require('../generated/prisma-client')
-import {
+const {
   GraphQLEmail,
   GraphQLURL,
   GraphQLDateTime,
   GraphQLLimitedString,
   GraphQLPassword,
   GraphQLUUID
-} from 'graphql-custom-types';
+} = require('graphql-custom-types');
 
-export const resolvers = {
+const resolvers = {
   
   DateTime: GraphQLDateTime,
   
@@ -32,3 +32,5 @@ export const resolvers = {
   
   
 }
+
+module.exports = resolvers

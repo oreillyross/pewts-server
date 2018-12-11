@@ -1,9 +1,10 @@
-import { GraphQLServer} from 'graphql-yoga'
-import { typeDefs } from './graphql/types'
-import { resolvers } from './graphql/resolvers'
-import { makeExecutableSchema } from 'graphql-tools';
+const { GraphQLServer} = require('graphql-yoga')
+const  { typeDefs } = require('./graphql/types')
+const  resolvers  = require('./graphql/resolvers')
+const { makeExecutableSchema } = require('graphql-tools');
 
-export const schema = makeExecutableSchema({
+
+const schema = makeExecutableSchema({
    typeDefs,
    resolvers,
  });
@@ -11,7 +12,8 @@ export const schema = makeExecutableSchema({
 
 
 const opts = {
-  endpoint: '/graphql'
+  endpoint: '/graphql',
+  port: process.env.PORT || 8080  
 }
 
 const server = new GraphQLServer({
@@ -19,6 +21,6 @@ const server = new GraphQLServer({
   opts
 })
 
-server.start({ port: process.env.PORT || 8080 }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+server.start().then(() => {
+  console.log(`🚀 Server ready`);
 })
