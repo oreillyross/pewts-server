@@ -13,12 +13,16 @@ const resolvers = {
   DateTime: GraphQLDateTime,
   
   Query: {
-     indicators: async () => await prisma.indicators({})
+     indicators: async () => await prisma.indicators({}),
+     scenarios: async () => await prisma.scenarios({})
   },
   
   Mutation: {
     createIndicator: async (_, {data}) => {
        return await prisma.createIndicator({title: data.title}) 
+    },
+    createScenario: async (_, {data}) => {
+      return await prisma.createScenario({title: data.title, description: data.description})
     }
     
   }
