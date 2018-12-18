@@ -36,7 +36,13 @@ const resolvers = {
     },
     createDescriptors: async (_, {data}) => {
       return await prisma.createDescriptors({tag: data.tag})
-    }
+    },
+    updateKeyword: async (_, {data, where}) => {
+      return await prisma.updateKeyword({data: {searchterm: data.searchterm}, where: {id: where.id}})  
+    },
+    deleteKeyword: async (_, {where}) => {
+      return await prisma.deleteKeyword({id: where.id})
+    },
     
     
     
