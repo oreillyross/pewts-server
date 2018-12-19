@@ -40,8 +40,14 @@ const resolvers = {
     updateKeyword: async (_, {data, where}) => {
       return await prisma.updateKeyword({data: {searchterm: data.searchterm}, where: {id: where.id}})  
     },
+    updateScenario: async (_, {data, where}) => {
+      return await prisma.updateScenario({data: {title: data.title}, where: {id: where.id}})  
+    },
     deleteKeyword: async (_, {where}) => {
       return await prisma.deleteKeyword({id: where.id})
+    },
+    deleteScenario: async (_, {where}) => {
+      return await prisma.deleteScenario({id: where.id})
     },
     
     
