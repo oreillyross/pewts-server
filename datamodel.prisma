@@ -11,8 +11,8 @@ type Category @model {
   name: String!
 }
 
-type Descriptors @model {
-  events: [Event!]! @relation(name: "EventOnDescriptors")
+type Descriptor @model {
+  events: [Event!]! @relation(name: "EventOnDescriptor")
   id: ID! @unique
   tag: String!
 }
@@ -22,7 +22,7 @@ type Event @model {
   category: String
   crawlDate: DateTime!
   description: String!
-  descriptorses: [Descriptors!]! @relation(name: "EventOnDescriptors")
+  descriptors: [Descriptor!]! @relation(name: "EventOnDescriptor")
   eventDate: DateTime
   href: String
   id: ID! @unique

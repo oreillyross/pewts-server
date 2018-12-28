@@ -11,7 +11,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 
 export interface Exists {
   category: (where?: CategoryWhereInput) => Promise<boolean>;
-  descriptors: (where?: DescriptorsWhereInput) => Promise<boolean>;
+  descriptor: (where?: DescriptorWhereInput) => Promise<boolean>;
   event: (where?: EventWhereInput) => Promise<boolean>;
   indicator: (where?: IndicatorWhereInput) => Promise<boolean>;
   keyword: (where?: KeywordWhereInput) => Promise<boolean>;
@@ -60,29 +60,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => CategoryConnectionPromise;
-  descriptors: (where: DescriptorsWhereUniqueInput) => DescriptorsPromise;
-  descriptorses: (
+  descriptor: (where: DescriptorWhereUniqueInput) => DescriptorPromise;
+  descriptors: (
     args?: {
-      where?: DescriptorsWhereInput;
-      orderBy?: DescriptorsOrderByInput;
+      where?: DescriptorWhereInput;
+      orderBy?: DescriptorOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<Descriptors>;
-  descriptorsesConnection: (
+  ) => FragmentableArray<Descriptor>;
+  descriptorsConnection: (
     args?: {
-      where?: DescriptorsWhereInput;
-      orderBy?: DescriptorsOrderByInput;
+      where?: DescriptorWhereInput;
+      orderBy?: DescriptorOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => DescriptorsConnectionPromise;
+  ) => DescriptorConnectionPromise;
   event: (where: EventWhereUniqueInput) => EventPromise;
   events: (
     args?: {
@@ -197,27 +197,25 @@ export interface Prisma {
   ) => CategoryPromise;
   deleteCategory: (where: CategoryWhereUniqueInput) => CategoryPromise;
   deleteManyCategories: (where?: CategoryWhereInput) => BatchPayloadPromise;
-  createDescriptors: (data: DescriptorsCreateInput) => DescriptorsPromise;
-  updateDescriptors: (
-    args: { data: DescriptorsUpdateInput; where: DescriptorsWhereUniqueInput }
-  ) => DescriptorsPromise;
-  updateManyDescriptorses: (
+  createDescriptor: (data: DescriptorCreateInput) => DescriptorPromise;
+  updateDescriptor: (
+    args: { data: DescriptorUpdateInput; where: DescriptorWhereUniqueInput }
+  ) => DescriptorPromise;
+  updateManyDescriptors: (
     args: {
-      data: DescriptorsUpdateManyMutationInput;
-      where?: DescriptorsWhereInput;
+      data: DescriptorUpdateManyMutationInput;
+      where?: DescriptorWhereInput;
     }
   ) => BatchPayloadPromise;
-  upsertDescriptors: (
+  upsertDescriptor: (
     args: {
-      where: DescriptorsWhereUniqueInput;
-      create: DescriptorsCreateInput;
-      update: DescriptorsUpdateInput;
+      where: DescriptorWhereUniqueInput;
+      create: DescriptorCreateInput;
+      update: DescriptorUpdateInput;
     }
-  ) => DescriptorsPromise;
-  deleteDescriptors: (where: DescriptorsWhereUniqueInput) => DescriptorsPromise;
-  deleteManyDescriptorses: (
-    where?: DescriptorsWhereInput
-  ) => BatchPayloadPromise;
+  ) => DescriptorPromise;
+  deleteDescriptor: (where: DescriptorWhereUniqueInput) => DescriptorPromise;
+  deleteManyDescriptors: (where?: DescriptorWhereInput) => BatchPayloadPromise;
   createEvent: (data: EventCreateInput) => EventPromise;
   updateEvent: (
     args: { data: EventUpdateInput; where: EventWhereUniqueInput }
@@ -297,9 +295,9 @@ export interface Subscription {
   category: (
     where?: CategorySubscriptionWhereInput
   ) => CategorySubscriptionPayloadSubscription;
-  descriptors: (
-    where?: DescriptorsSubscriptionWhereInput
-  ) => DescriptorsSubscriptionPayloadSubscription;
+  descriptor: (
+    where?: DescriptorSubscriptionWhereInput
+  ) => DescriptorSubscriptionPayloadSubscription;
   event: (
     where?: EventSubscriptionWhereInput
   ) => EventSubscriptionPayloadSubscription;
@@ -332,7 +330,7 @@ export type CategoryOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type DescriptorsOrderByInput =
+export type DescriptorOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "tag_ASC"
@@ -526,7 +524,7 @@ export interface CategoryUpdateManyMutationInput {
   name?: String;
 }
 
-export interface DescriptorsWhereInput {
+export interface DescriptorWhereInput {
   events_every?: EventWhereInput;
   events_some?: EventWhereInput;
   events_none?: EventWhereInput;
@@ -558,9 +556,9 @@ export interface DescriptorsWhereInput {
   tag_not_starts_with?: String;
   tag_ends_with?: String;
   tag_not_ends_with?: String;
-  AND?: DescriptorsWhereInput[] | DescriptorsWhereInput;
-  OR?: DescriptorsWhereInput[] | DescriptorsWhereInput;
-  NOT?: DescriptorsWhereInput[] | DescriptorsWhereInput;
+  AND?: DescriptorWhereInput[] | DescriptorWhereInput;
+  OR?: DescriptorWhereInput[] | DescriptorWhereInput;
+  NOT?: DescriptorWhereInput[] | DescriptorWhereInput;
 }
 
 export interface CategoryUpdateInput {
@@ -624,9 +622,9 @@ export interface EventWhereInput {
   description_not_starts_with?: String;
   description_ends_with?: String;
   description_not_ends_with?: String;
-  descriptorses_every?: DescriptorsWhereInput;
-  descriptorses_some?: DescriptorsWhereInput;
-  descriptorses_none?: DescriptorsWhereInput;
+  descriptors_every?: DescriptorWhereInput;
+  descriptors_some?: DescriptorWhereInput;
+  descriptors_none?: DescriptorWhereInput;
   eventDate?: DateTimeInput;
   eventDate_not?: DateTimeInput;
   eventDate_in?: DateTimeInput[] | DateTimeInput;
@@ -705,7 +703,7 @@ export interface EventUpdateWithoutCategoriesDataInput {
   category?: String;
   crawlDate?: DateTimeInput;
   description?: String;
-  descriptorses?: DescriptorsUpdateManyWithoutEventsInput;
+  descriptors?: DescriptorUpdateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorUpdateManyWithoutEventsInput;
@@ -725,19 +723,19 @@ export interface IndicatorSubscriptionWhereInput {
   NOT?: IndicatorSubscriptionWhereInput[] | IndicatorSubscriptionWhereInput;
 }
 
-export interface DescriptorsUpdateManyWithoutEventsInput {
+export interface DescriptorUpdateManyWithoutEventsInput {
   create?:
-    | DescriptorsCreateWithoutEventsInput[]
-    | DescriptorsCreateWithoutEventsInput;
-  delete?: DescriptorsWhereUniqueInput[] | DescriptorsWhereUniqueInput;
-  connect?: DescriptorsWhereUniqueInput[] | DescriptorsWhereUniqueInput;
-  disconnect?: DescriptorsWhereUniqueInput[] | DescriptorsWhereUniqueInput;
+    | DescriptorCreateWithoutEventsInput[]
+    | DescriptorCreateWithoutEventsInput;
+  delete?: DescriptorWhereUniqueInput[] | DescriptorWhereUniqueInput;
+  connect?: DescriptorWhereUniqueInput[] | DescriptorWhereUniqueInput;
+  disconnect?: DescriptorWhereUniqueInput[] | DescriptorWhereUniqueInput;
   update?:
-    | DescriptorsUpdateWithWhereUniqueWithoutEventsInput[]
-    | DescriptorsUpdateWithWhereUniqueWithoutEventsInput;
+    | DescriptorUpdateWithWhereUniqueWithoutEventsInput[]
+    | DescriptorUpdateWithWhereUniqueWithoutEventsInput;
   upsert?:
-    | DescriptorsUpsertWithWhereUniqueWithoutEventsInput[]
-    | DescriptorsUpsertWithWhereUniqueWithoutEventsInput;
+    | DescriptorUpsertWithWhereUniqueWithoutEventsInput[]
+    | DescriptorUpsertWithWhereUniqueWithoutEventsInput;
 }
 
 export interface EventSubscriptionWhereInput {
@@ -751,9 +749,9 @@ export interface EventSubscriptionWhereInput {
   NOT?: EventSubscriptionWhereInput[] | EventSubscriptionWhereInput;
 }
 
-export interface DescriptorsUpdateWithWhereUniqueWithoutEventsInput {
-  where: DescriptorsWhereUniqueInput;
-  data: DescriptorsUpdateWithoutEventsDataInput;
+export interface DescriptorUpdateWithWhereUniqueWithoutEventsInput {
+  where: DescriptorWhereUniqueInput;
+  data: DescriptorUpdateWithoutEventsDataInput;
 }
 
 export interface CategorySubscriptionWhereInput {
@@ -767,7 +765,7 @@ export interface CategorySubscriptionWhereInput {
   NOT?: CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput;
 }
 
-export interface DescriptorsUpdateWithoutEventsDataInput {
+export interface DescriptorUpdateWithoutEventsDataInput {
   tag?: String;
 }
 
@@ -777,10 +775,10 @@ export interface IndicatorUpsertWithWhereUniqueWithoutScenariosInput {
   create: IndicatorCreateWithoutScenariosInput;
 }
 
-export interface DescriptorsUpsertWithWhereUniqueWithoutEventsInput {
-  where: DescriptorsWhereUniqueInput;
-  update: DescriptorsUpdateWithoutEventsDataInput;
-  create: DescriptorsCreateWithoutEventsInput;
+export interface DescriptorUpsertWithWhereUniqueWithoutEventsInput {
+  where: DescriptorWhereUniqueInput;
+  update: DescriptorUpdateWithoutEventsDataInput;
+  create: DescriptorCreateWithoutEventsInput;
 }
 
 export interface IndicatorUpdateWithoutScenariosDataInput {
@@ -929,7 +927,7 @@ export interface EventCreateWithoutIndicatorsInput {
   category?: String;
   crawlDate: DateTimeInput;
   description: String;
-  descriptorses?: DescriptorsCreateManyWithoutEventsInput;
+  descriptors?: DescriptorCreateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   unread?: Boolean;
@@ -990,7 +988,7 @@ export interface EventCreateWithoutCategoriesInput {
   category?: String;
   crawlDate: DateTimeInput;
   description: String;
-  descriptorses?: DescriptorsCreateManyWithoutEventsInput;
+  descriptors?: DescriptorCreateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorCreateManyWithoutEventsInput;
@@ -1004,7 +1002,7 @@ export interface EventUpdateWithoutIndicatorsDataInput {
   category?: String;
   crawlDate?: DateTimeInput;
   description?: String;
-  descriptorses?: DescriptorsUpdateManyWithoutEventsInput;
+  descriptors?: DescriptorUpdateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   unread?: Boolean;
@@ -1012,7 +1010,7 @@ export interface EventUpdateWithoutIndicatorsDataInput {
   title?: String;
 }
 
-export interface DescriptorsCreateWithoutEventsInput {
+export interface DescriptorCreateWithoutEventsInput {
   tag: String;
 }
 
@@ -1046,8 +1044,8 @@ export interface KeywordCreateWithoutIndicatorsInput {
   searchterm: String;
 }
 
-export interface DescriptorsCreateInput {
-  events?: EventCreateManyWithoutDescriptorsesInput;
+export interface DescriptorCreateInput {
+  events?: EventCreateManyWithoutDescriptorsInput;
   tag: String;
 }
 
@@ -1056,10 +1054,10 @@ export interface ScenarioCreateWithoutIndicatorsInput {
   description: String;
 }
 
-export interface EventCreateManyWithoutDescriptorsesInput {
+export interface EventCreateManyWithoutDescriptorsInput {
   create?:
-    | EventCreateWithoutDescriptorsesInput[]
-    | EventCreateWithoutDescriptorsesInput;
+    | EventCreateWithoutDescriptorsInput[]
+    | EventCreateWithoutDescriptorsInput;
   connect?: EventWhereUniqueInput[] | EventWhereUniqueInput;
 }
 
@@ -1074,7 +1072,7 @@ export interface KeywordSubscriptionWhereInput {
   NOT?: KeywordSubscriptionWhereInput[] | KeywordSubscriptionWhereInput;
 }
 
-export interface EventCreateWithoutDescriptorsesInput {
+export interface EventCreateWithoutDescriptorsInput {
   categories?: CategoryCreateManyWithoutEventInput;
   category?: String;
   crawlDate: DateTimeInput;
@@ -1087,15 +1085,15 @@ export interface EventCreateWithoutDescriptorsesInput {
   title: String;
 }
 
-export interface DescriptorsSubscriptionWhereInput {
+export interface DescriptorSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: DescriptorsWhereInput;
-  AND?: DescriptorsSubscriptionWhereInput[] | DescriptorsSubscriptionWhereInput;
-  OR?: DescriptorsSubscriptionWhereInput[] | DescriptorsSubscriptionWhereInput;
-  NOT?: DescriptorsSubscriptionWhereInput[] | DescriptorsSubscriptionWhereInput;
+  node?: DescriptorWhereInput;
+  AND?: DescriptorSubscriptionWhereInput[] | DescriptorSubscriptionWhereInput;
+  OR?: DescriptorSubscriptionWhereInput[] | DescriptorSubscriptionWhereInput;
+  NOT?: DescriptorSubscriptionWhereInput[] | DescriptorSubscriptionWhereInput;
 }
 
 export interface CategoryCreateManyWithoutEventInput {
@@ -1103,7 +1101,7 @@ export interface CategoryCreateManyWithoutEventInput {
   connect?: CategoryWhereUniqueInput[] | CategoryWhereUniqueInput;
 }
 
-export type DescriptorsWhereUniqueInput = AtLeastOne<{
+export type DescriptorWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
@@ -1115,8 +1113,8 @@ export type EventWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface DescriptorsUpdateInput {
-  events?: EventUpdateManyWithoutDescriptorsesInput;
+export interface DescriptorUpdateInput {
+  events?: EventUpdateManyWithoutDescriptorsInput;
   tag?: String;
 }
 
@@ -1124,19 +1122,19 @@ export type IndicatorWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface EventUpdateManyWithoutDescriptorsesInput {
+export interface EventUpdateManyWithoutDescriptorsInput {
   create?:
-    | EventCreateWithoutDescriptorsesInput[]
-    | EventCreateWithoutDescriptorsesInput;
+    | EventCreateWithoutDescriptorsInput[]
+    | EventCreateWithoutDescriptorsInput;
   delete?: EventWhereUniqueInput[] | EventWhereUniqueInput;
   connect?: EventWhereUniqueInput[] | EventWhereUniqueInput;
   disconnect?: EventWhereUniqueInput[] | EventWhereUniqueInput;
   update?:
-    | EventUpdateWithWhereUniqueWithoutDescriptorsesInput[]
-    | EventUpdateWithWhereUniqueWithoutDescriptorsesInput;
+    | EventUpdateWithWhereUniqueWithoutDescriptorsInput[]
+    | EventUpdateWithWhereUniqueWithoutDescriptorsInput;
   upsert?:
-    | EventUpsertWithWhereUniqueWithoutDescriptorsesInput[]
-    | EventUpsertWithWhereUniqueWithoutDescriptorsesInput;
+    | EventUpsertWithWhereUniqueWithoutDescriptorsInput[]
+    | EventUpsertWithWhereUniqueWithoutDescriptorsInput;
 }
 
 export type KeywordWhereUniqueInput = AtLeastOne<{
@@ -1144,9 +1142,9 @@ export type KeywordWhereUniqueInput = AtLeastOne<{
   searchterm?: String;
 }>;
 
-export interface EventUpdateWithWhereUniqueWithoutDescriptorsesInput {
+export interface EventUpdateWithWhereUniqueWithoutDescriptorsInput {
   where: EventWhereUniqueInput;
-  data: EventUpdateWithoutDescriptorsesDataInput;
+  data: EventUpdateWithoutDescriptorsDataInput;
 }
 
 export interface KeywordUpdateInput {
@@ -1154,7 +1152,7 @@ export interface KeywordUpdateInput {
   searchterm?: String;
 }
 
-export interface EventUpdateWithoutDescriptorsesDataInput {
+export interface EventUpdateWithoutDescriptorsDataInput {
   categories?: CategoryUpdateManyWithoutEventInput;
   category?: String;
   crawlDate?: DateTimeInput;
@@ -1185,11 +1183,11 @@ export interface CategoryUpdateManyWithoutEventInput {
     | CategoryUpsertWithWhereUniqueWithoutEventInput;
 }
 
-export interface DescriptorsCreateManyWithoutEventsInput {
+export interface DescriptorCreateManyWithoutEventsInput {
   create?:
-    | DescriptorsCreateWithoutEventsInput[]
-    | DescriptorsCreateWithoutEventsInput;
-  connect?: DescriptorsWhereUniqueInput[] | DescriptorsWhereUniqueInput;
+    | DescriptorCreateWithoutEventsInput[]
+    | DescriptorCreateWithoutEventsInput;
+  connect?: DescriptorWhereUniqueInput[] | DescriptorWhereUniqueInput;
 }
 
 export interface CategoryUpdateWithWhereUniqueWithoutEventInput {
@@ -1228,10 +1226,10 @@ export interface ScenarioUpdateManyMutationInput {
   description?: String;
 }
 
-export interface EventUpsertWithWhereUniqueWithoutDescriptorsesInput {
+export interface EventUpsertWithWhereUniqueWithoutDescriptorsInput {
   where: EventWhereUniqueInput;
-  update: EventUpdateWithoutDescriptorsesDataInput;
-  create: EventCreateWithoutDescriptorsesInput;
+  update: EventUpdateWithoutDescriptorsDataInput;
+  create: EventCreateWithoutDescriptorsInput;
 }
 
 export interface IndicatorCreateWithoutScenariosInput {
@@ -1240,7 +1238,7 @@ export interface IndicatorCreateWithoutScenariosInput {
   title: String;
 }
 
-export interface DescriptorsUpdateManyMutationInput {
+export interface DescriptorUpdateManyMutationInput {
   tag?: String;
 }
 
@@ -1254,7 +1252,7 @@ export interface EventCreateInput {
   category?: String;
   crawlDate: DateTimeInput;
   description: String;
-  descriptorses?: DescriptorsCreateManyWithoutEventsInput;
+  descriptors?: DescriptorCreateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorCreateManyWithoutEventsInput;
@@ -1305,7 +1303,7 @@ export interface EventUpdateInput {
   category?: String;
   crawlDate?: DateTimeInput;
   description?: String;
-  descriptorses?: DescriptorsUpdateManyWithoutEventsInput;
+  descriptors?: DescriptorUpdateManyWithoutEventsInput;
   eventDate?: DateTimeInput;
   href?: String;
   indicators?: IndicatorUpdateManyWithoutEventsInput;
@@ -1413,21 +1411,21 @@ export interface ScenarioPreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DescriptorsEdge {
+export interface DescriptorEdge {
   cursor: String;
 }
 
-export interface DescriptorsEdgePromise
-  extends Promise<DescriptorsEdge>,
+export interface DescriptorEdgePromise
+  extends Promise<DescriptorEdge>,
     Fragmentable {
-  node: <T = DescriptorsPromise>() => T;
+  node: <T = DescriptorPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface DescriptorsEdgeSubscription
-  extends Promise<AsyncIterator<DescriptorsEdge>>,
+export interface DescriptorEdgeSubscription
+  extends Promise<AsyncIterator<DescriptorEdge>>,
     Fragmentable {
-  node: <T = DescriptorsSubscription>() => T;
+  node: <T = DescriptorSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -1494,22 +1492,22 @@ export interface IndicatorSubscription
   title: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DescriptorsConnection {}
+export interface DescriptorConnection {}
 
-export interface DescriptorsConnectionPromise
-  extends Promise<DescriptorsConnection>,
+export interface DescriptorConnectionPromise
+  extends Promise<DescriptorConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DescriptorsEdge>>() => T;
-  aggregate: <T = AggregateDescriptorsPromise>() => T;
+  edges: <T = FragmentableArray<DescriptorEdge>>() => T;
+  aggregate: <T = AggregateDescriptorPromise>() => T;
 }
 
-export interface DescriptorsConnectionSubscription
-  extends Promise<AsyncIterator<DescriptorsConnection>>,
+export interface DescriptorConnectionSubscription
+  extends Promise<AsyncIterator<DescriptorConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DescriptorsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDescriptorsSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DescriptorEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDescriptorSubscription>() => T;
 }
 
 export interface AggregateCategory {
@@ -1528,12 +1526,12 @@ export interface AggregateCategorySubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface Descriptors {
+export interface Descriptor {
   id: ID_Output;
   tag: String;
 }
 
-export interface DescriptorsPromise extends Promise<Descriptors>, Fragmentable {
+export interface DescriptorPromise extends Promise<Descriptor>, Fragmentable {
   events: <T = FragmentableArray<Event>>(
     args?: {
       where?: EventWhereInput;
@@ -1549,8 +1547,8 @@ export interface DescriptorsPromise extends Promise<Descriptors>, Fragmentable {
   tag: () => Promise<String>;
 }
 
-export interface DescriptorsSubscription
-  extends Promise<AsyncIterator<Descriptors>>,
+export interface DescriptorSubscription
+  extends Promise<AsyncIterator<Descriptor>>,
     Fragmentable {
   events: <T = Promise<AsyncIterator<EventSubscription>>>(
     args?: {
@@ -1746,10 +1744,10 @@ export interface EventPromise extends Promise<Event>, Fragmentable {
   category: () => Promise<String>;
   crawlDate: () => Promise<DateTimeOutput>;
   description: () => Promise<String>;
-  descriptorses: <T = FragmentableArray<Descriptors>>(
+  descriptors: <T = FragmentableArray<Descriptor>>(
     args?: {
-      where?: DescriptorsWhereInput;
-      orderBy?: DescriptorsOrderByInput;
+      where?: DescriptorWhereInput;
+      orderBy?: DescriptorOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -1793,10 +1791,10 @@ export interface EventSubscription
   category: () => Promise<AsyncIterator<String>>;
   crawlDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   description: () => Promise<AsyncIterator<String>>;
-  descriptorses: <T = Promise<AsyncIterator<DescriptorsSubscription>>>(
+  descriptors: <T = Promise<AsyncIterator<DescriptorSubscription>>>(
     args?: {
-      where?: DescriptorsWhereInput;
-      orderBy?: DescriptorsOrderByInput;
+      where?: DescriptorWhereInput;
+      orderBy?: DescriptorOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -1894,27 +1892,27 @@ export interface AggregateEventSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface DescriptorsSubscriptionPayload {
+export interface DescriptorSubscriptionPayload {
   mutation: MutationType;
   updatedFields?: String[];
 }
 
-export interface DescriptorsSubscriptionPayloadPromise
-  extends Promise<DescriptorsSubscriptionPayload>,
+export interface DescriptorSubscriptionPayloadPromise
+  extends Promise<DescriptorSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = DescriptorsPromise>() => T;
+  node: <T = DescriptorPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = DescriptorsPreviousValuesPromise>() => T;
+  previousValues: <T = DescriptorPreviousValuesPromise>() => T;
 }
 
-export interface DescriptorsSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DescriptorsSubscriptionPayload>>,
+export interface DescriptorSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DescriptorSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DescriptorsSubscription>() => T;
+  node: <T = DescriptorSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DescriptorsPreviousValuesSubscription>() => T;
+  previousValues: <T = DescriptorPreviousValuesSubscription>() => T;
 }
 
 export interface EventConnection {}
@@ -1935,20 +1933,20 @@ export interface EventConnectionSubscription
   aggregate: <T = AggregateEventSubscription>() => T;
 }
 
-export interface DescriptorsPreviousValues {
+export interface DescriptorPreviousValues {
   id: ID_Output;
   tag: String;
 }
 
-export interface DescriptorsPreviousValuesPromise
-  extends Promise<DescriptorsPreviousValues>,
+export interface DescriptorPreviousValuesPromise
+  extends Promise<DescriptorPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   tag: () => Promise<String>;
 }
 
-export interface DescriptorsPreviousValuesSubscription
-  extends Promise<AsyncIterator<DescriptorsPreviousValues>>,
+export interface DescriptorPreviousValuesSubscription
+  extends Promise<AsyncIterator<DescriptorPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   tag: () => Promise<AsyncIterator<String>>;
@@ -2288,18 +2286,18 @@ export interface KeywordSubscriptionPayloadSubscription
   previousValues: <T = KeywordPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateDescriptors {
+export interface AggregateDescriptor {
   count: Int;
 }
 
-export interface AggregateDescriptorsPromise
-  extends Promise<AggregateDescriptors>,
+export interface AggregateDescriptorPromise
+  extends Promise<AggregateDescriptor>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateDescriptorsSubscription
-  extends Promise<AsyncIterator<AggregateDescriptors>>,
+export interface AggregateDescriptorSubscription
+  extends Promise<AsyncIterator<AggregateDescriptor>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -2347,7 +2345,7 @@ export const models = [
     embedded: false
   },
   {
-    name: "Descriptors",
+    name: "Descriptor",
     embedded: false
   },
   {

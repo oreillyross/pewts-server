@@ -20,7 +20,7 @@ const resolvers = {
      indicators: async () => await prisma.indicators({}),
      scenarios: async () => await prisma.scenarios({}),
      keywords: async () => await prisma.keywords({}),
-     descriptorses: async () => await prisma.descriptorses({}),
+     descriptors: async () => await prisma.descriptors({}),
      events: async (orderBy) => await prisma.events({orderBy: 'title_ASC'}) 
   },
   
@@ -34,8 +34,8 @@ const resolvers = {
     createKeyword: async (_, {data}) => {
       return await prisma.createKeyword({searchterm: data.searchterm})
     },
-    createDescriptors: async (_, {data}) => {
-      return await prisma.createDescriptors({tag: data.tag})
+    createDescriptor: async (_, {data}) => {
+      return await prisma.createDescriptor({tag: data.tag})
     },
     updateKeyword: async (_, {data, where}) => {
       return await prisma.updateKeyword({data: {searchterm: data.searchterm}, where: {id: where.id}})  

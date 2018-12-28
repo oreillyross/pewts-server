@@ -9,7 +9,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Descriptors",
+    name: "Descriptor",
     embedded: false
   },
   {
