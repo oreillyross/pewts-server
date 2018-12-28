@@ -1,4 +1,4 @@
-const { prisma } = require('../generated/prisma-client')
+const { prisma } = require("../generated/prisma-client");
 const {
   GraphQLEmail,
   GraphQLURL,
@@ -6,62 +6,60 @@ const {
   GraphQLLimitedString,
   GraphQLPassword,
   GraphQLUUID
-} = require('graphql-custom-types');
-
-
-
-
+} = require("graphql-custom-types");
 
 const resolvers = {
-  
   DateTime: GraphQLDateTime,
-  
+
   Query: {
-     indicators: async () => await prisma.indicators({}),
-     scenarios: async () => await prisma.scenarios({}),
-     keywords: async () => await prisma.keywords({}),
-     descriptors: async () => await prisma.descriptors({}),
-     events: async (orderBy) => await prisma.events({orderBy: 'title_ASC'}) 
+    indicators: async () => await prisma.indicators({}),
+    scenarios: async () => await prisma.scenarios({}),
+    keywords: async () => await prisma.keywords({}),
+    descriptorses: async () => await prisma.descriptorses({}),
+    events: async orderBy => await prisma.events({ orderBy: "title_ASC" })
   },
-  
+
   Mutation: {
-    createIndicator: async (_, {data}) => {
-       return await prisma.createIndicator({title: data.title}) 
+    createIndicator: async (_, { data }) => {
+      return await prisma.createIndicator({ title: data.title });
     },
-    createScenario: async (_, {data}) => {
-      return await prisma.createScenario({title: data.title, description: data.description})
+    createScenario: async (_, { data }) => {
+      return await prisma.createScenario({
+        title: data.title,
+        description: data.description
+      });
     },
-    createKeyword: async (_, {data}) => {
-      return await prisma.createKeyword({searchterm: data.searchterm})
+    createKeyword: async (_, { data }) => {
+      return await prisma.createKeyword({ searchterm: data.searchterm });
     },
-    createDescriptor: async (_, {data}) => {
-      return await prisma.createDescriptor({tag: data.tag})
+    createDescriptors: async (_, { data }) => {
+      return await prisma.createDescriptors({ tag: data.tag });
     },
-    updateKeyword: async (_, {data, where}) => {
-      return await prisma.updateKeyword({data: {searchterm: data.searchterm}, where: {id: where.id}})  
+    updateKeyword: async (_, { data, where }) => {
+      return await prisma.updateKeyword({
+        data: { searchterm: data.searchterm },
+        where: { id: where.id }
+      });
     },
-    updateScenario: async (_, {data, where}) => {
-      return await prisma.updateScenario({data: {title: data.title}, where: {id: where.id}})  
+    updateScenario: async (_, { data, where }) => {
+      return await prisma.updateScenario({
+        data: { title: data.title },
+        where: { id: where.id }
+      });
     },
-    deleteKeyword: async (_, {where}) => {
-      return await prisma.deleteKeyword({id: where.id})
+    deleteKeyword: async (_, { where }) => {
+      return await prisma.deleteKeyword({ id: where.id });
     },
-    deleteScenario: async (_, {where}) => {
-      return await prisma.deleteScenario({id: where.id})
-    },
-    
-    
-    
-  }
-  
-  ,
-     Node: {
+    deleteScenario: async (_, { where }) => {
+      return await prisma.deleteScenario({ id: where.id });
+    }
+  },
+
+  Node: {
     __resolveType() {
       return null;
     }
   }
-  
-  
-}
+};
 
-module.exports = resolvers
+module.exports = resolvers;
