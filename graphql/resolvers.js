@@ -15,11 +15,19 @@ const resolvers = {
     indicators: async () => await prisma.indicators({}),
     scenarios: async () => await prisma.scenarios({}),
     keywords: async () => await prisma.keywords({}),
-    descriptorses: async () => await prisma.descriptorses({}),
-    events: async orderBy => await prisma.events({ orderBy: "title_ASC" })
+    descriptors: async () => await prisma.descriptors({}),
+    events: async orderBy => await prisma.events({ orderBy: "title_ASC" }),
+    event: async (_, { where }) => await prisma.event({ id: where.id })
   },
 
   Mutation: {
+    createEvent: async (_, { data }) => {
+      return await prisma.createEvent({
+        title: data.title,
+        description: data.description,
+        crawlDate: data.crawlDate
+      });
+    },
     createIndicator: async (_, { data }) => {
       return await prisma.createIndicator({ title: data.title });
     },
@@ -32,8 +40,8 @@ const resolvers = {
     createKeyword: async (_, { data }) => {
       return await prisma.createKeyword({ searchterm: data.searchterm });
     },
-    createDescriptors: async (_, { data }) => {
-      return await prisma.createDescriptors({ tag: data.tag });
+    createDescriptor: async (_, { data }) => {
+      return await prisma.createDescriptor({ tag: data.tag });
     },
     updateKeyword: async (_, { data, where }) => {
       return await prisma.updateKeyword({

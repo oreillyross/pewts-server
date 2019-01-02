@@ -4,7 +4,7 @@ module.exports = {
       count: Int!
     }
 
-    type AggregateDescriptors {
+    type AggregateDescriptor {
       count: Int!
     }
 
@@ -167,7 +167,7 @@ module.exports = {
 
     scalar DateTime
 
-    type Descriptors {
+    type Descriptor {
       events(
         where: EventWhereInput
         orderBy: EventOrderByInput
@@ -181,32 +181,32 @@ module.exports = {
       tag: String!
     }
 
-    type DescriptorsConnection {
+    type DescriptorConnection {
       pageInfo: PageInfo!
-      edges: [DescriptorsEdge]!
-      aggregate: AggregateDescriptors!
+      edges: [DescriptorEdge]!
+      aggregate: AggregateDescriptor!
     }
 
-    input DescriptorsCreateInput {
-      events: EventCreateManyWithoutDescriptorsesInput
+    input DescriptorCreateInput {
+      events: EventCreateManyWithoutDescriptorsInput
       tag: String!
     }
 
-    input DescriptorsCreateManyWithoutEventsInput {
-      create: [DescriptorsCreateWithoutEventsInput!]
-      connect: [DescriptorsWhereUniqueInput!]
+    input DescriptorCreateManyWithoutEventsInput {
+      create: [DescriptorCreateWithoutEventsInput!]
+      connect: [DescriptorWhereUniqueInput!]
     }
 
-    input DescriptorsCreateWithoutEventsInput {
+    input DescriptorCreateWithoutEventsInput {
       tag: String!
     }
 
-    type DescriptorsEdge {
-      node: Descriptors!
+    type DescriptorEdge {
+      node: Descriptor!
       cursor: String!
     }
 
-    enum DescriptorsOrderByInput {
+    enum DescriptorOrderByInput {
       id_ASC
       id_DESC
       tag_ASC
@@ -217,63 +217,63 @@ module.exports = {
       updatedAt_DESC
     }
 
-    type DescriptorsPreviousValues {
+    type DescriptorPreviousValues {
       id: ID!
       tag: String!
     }
 
-    type DescriptorsSubscriptionPayload {
+    type DescriptorSubscriptionPayload {
       mutation: MutationType!
-      node: Descriptors
+      node: Descriptor
       updatedFields: [String!]
-      previousValues: DescriptorsPreviousValues
+      previousValues: DescriptorPreviousValues
     }
 
-    input DescriptorsSubscriptionWhereInput {
+    input DescriptorSubscriptionWhereInput {
       mutation_in: [MutationType!]
       updatedFields_contains: String
       updatedFields_contains_every: [String!]
       updatedFields_contains_some: [String!]
-      node: DescriptorsWhereInput
-      AND: [DescriptorsSubscriptionWhereInput!]
-      OR: [DescriptorsSubscriptionWhereInput!]
-      NOT: [DescriptorsSubscriptionWhereInput!]
+      node: DescriptorWhereInput
+      AND: [DescriptorSubscriptionWhereInput!]
+      OR: [DescriptorSubscriptionWhereInput!]
+      NOT: [DescriptorSubscriptionWhereInput!]
     }
 
-    input DescriptorsUpdateInput {
-      events: EventUpdateManyWithoutDescriptorsesInput
+    input DescriptorUpdateInput {
+      events: EventUpdateManyWithoutDescriptorsInput
       tag: String
     }
 
-    input DescriptorsUpdateManyMutationInput {
+    input DescriptorUpdateManyMutationInput {
       tag: String
     }
 
-    input DescriptorsUpdateManyWithoutEventsInput {
-      create: [DescriptorsCreateWithoutEventsInput!]
-      delete: [DescriptorsWhereUniqueInput!]
-      connect: [DescriptorsWhereUniqueInput!]
-      disconnect: [DescriptorsWhereUniqueInput!]
-      update: [DescriptorsUpdateWithWhereUniqueWithoutEventsInput!]
-      upsert: [DescriptorsUpsertWithWhereUniqueWithoutEventsInput!]
+    input DescriptorUpdateManyWithoutEventsInput {
+      create: [DescriptorCreateWithoutEventsInput!]
+      delete: [DescriptorWhereUniqueInput!]
+      connect: [DescriptorWhereUniqueInput!]
+      disconnect: [DescriptorWhereUniqueInput!]
+      update: [DescriptorUpdateWithWhereUniqueWithoutEventsInput!]
+      upsert: [DescriptorUpsertWithWhereUniqueWithoutEventsInput!]
     }
 
-    input DescriptorsUpdateWithoutEventsDataInput {
+    input DescriptorUpdateWithoutEventsDataInput {
       tag: String
     }
 
-    input DescriptorsUpdateWithWhereUniqueWithoutEventsInput {
-      where: DescriptorsWhereUniqueInput!
-      data: DescriptorsUpdateWithoutEventsDataInput!
+    input DescriptorUpdateWithWhereUniqueWithoutEventsInput {
+      where: DescriptorWhereUniqueInput!
+      data: DescriptorUpdateWithoutEventsDataInput!
     }
 
-    input DescriptorsUpsertWithWhereUniqueWithoutEventsInput {
-      where: DescriptorsWhereUniqueInput!
-      update: DescriptorsUpdateWithoutEventsDataInput!
-      create: DescriptorsCreateWithoutEventsInput!
+    input DescriptorUpsertWithWhereUniqueWithoutEventsInput {
+      where: DescriptorWhereUniqueInput!
+      update: DescriptorUpdateWithoutEventsDataInput!
+      create: DescriptorCreateWithoutEventsInput!
     }
 
-    input DescriptorsWhereInput {
+    input DescriptorWhereInput {
       events_every: EventWhereInput
       events_some: EventWhereInput
       events_none: EventWhereInput
@@ -305,12 +305,12 @@ module.exports = {
       tag_not_starts_with: String
       tag_ends_with: String
       tag_not_ends_with: String
-      AND: [DescriptorsWhereInput!]
-      OR: [DescriptorsWhereInput!]
-      NOT: [DescriptorsWhereInput!]
+      AND: [DescriptorWhereInput!]
+      OR: [DescriptorWhereInput!]
+      NOT: [DescriptorWhereInput!]
     }
 
-    input DescriptorsWhereUniqueInput {
+    input DescriptorWhereUniqueInput {
       id: ID
     }
 
@@ -327,15 +327,15 @@ module.exports = {
       category: String
       crawlDate: DateTime!
       description: String!
-      descriptorses(
-        where: DescriptorsWhereInput
-        orderBy: DescriptorsOrderByInput
+      descriptors(
+        where: DescriptorWhereInput
+        orderBy: DescriptorOrderByInput
         skip: Int
         after: String
         before: String
         first: Int
         last: Int
-      ): [Descriptors!]
+      ): [Descriptor!]
       eventDate: DateTime
       href: String
       id: ID!
@@ -364,7 +364,7 @@ module.exports = {
       category: String
       crawlDate: DateTime!
       description: String!
-      descriptorses: DescriptorsCreateManyWithoutEventsInput
+      descriptors: DescriptorCreateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       indicators: IndicatorCreateManyWithoutEventsInput
@@ -373,8 +373,8 @@ module.exports = {
       title: String!
     }
 
-    input EventCreateManyWithoutDescriptorsesInput {
-      create: [EventCreateWithoutDescriptorsesInput!]
+    input EventCreateManyWithoutDescriptorsInput {
+      create: [EventCreateWithoutDescriptorsInput!]
       connect: [EventWhereUniqueInput!]
     }
 
@@ -392,7 +392,7 @@ module.exports = {
       category: String
       crawlDate: DateTime!
       description: String!
-      descriptorses: DescriptorsCreateManyWithoutEventsInput
+      descriptors: DescriptorCreateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       indicators: IndicatorCreateManyWithoutEventsInput
@@ -401,7 +401,7 @@ module.exports = {
       title: String!
     }
 
-    input EventCreateWithoutDescriptorsesInput {
+    input EventCreateWithoutDescriptorsInput {
       categories: CategoryCreateManyWithoutEventInput
       category: String
       crawlDate: DateTime!
@@ -419,7 +419,7 @@ module.exports = {
       category: String
       crawlDate: DateTime!
       description: String!
-      descriptorses: DescriptorsCreateManyWithoutEventsInput
+      descriptors: DescriptorCreateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       unread: Boolean
@@ -492,7 +492,7 @@ module.exports = {
       category: String
       crawlDate: DateTime
       description: String
-      descriptorses: DescriptorsUpdateManyWithoutEventsInput
+      descriptors: DescriptorUpdateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       indicators: IndicatorUpdateManyWithoutEventsInput
@@ -512,13 +512,13 @@ module.exports = {
       title: String
     }
 
-    input EventUpdateManyWithoutDescriptorsesInput {
-      create: [EventCreateWithoutDescriptorsesInput!]
+    input EventUpdateManyWithoutDescriptorsInput {
+      create: [EventCreateWithoutDescriptorsInput!]
       delete: [EventWhereUniqueInput!]
       connect: [EventWhereUniqueInput!]
       disconnect: [EventWhereUniqueInput!]
-      update: [EventUpdateWithWhereUniqueWithoutDescriptorsesInput!]
-      upsert: [EventUpsertWithWhereUniqueWithoutDescriptorsesInput!]
+      update: [EventUpdateWithWhereUniqueWithoutDescriptorsInput!]
+      upsert: [EventUpsertWithWhereUniqueWithoutDescriptorsInput!]
     }
 
     input EventUpdateManyWithoutIndicatorsInput {
@@ -543,7 +543,7 @@ module.exports = {
       category: String
       crawlDate: DateTime
       description: String
-      descriptorses: DescriptorsUpdateManyWithoutEventsInput
+      descriptors: DescriptorUpdateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       indicators: IndicatorUpdateManyWithoutEventsInput
@@ -552,7 +552,7 @@ module.exports = {
       title: String
     }
 
-    input EventUpdateWithoutDescriptorsesDataInput {
+    input EventUpdateWithoutDescriptorsDataInput {
       categories: CategoryUpdateManyWithoutEventInput
       category: String
       crawlDate: DateTime
@@ -570,7 +570,7 @@ module.exports = {
       category: String
       crawlDate: DateTime
       description: String
-      descriptorses: DescriptorsUpdateManyWithoutEventsInput
+      descriptors: DescriptorUpdateManyWithoutEventsInput
       eventDate: DateTime
       href: String
       unread: Boolean
@@ -578,9 +578,9 @@ module.exports = {
       title: String
     }
 
-    input EventUpdateWithWhereUniqueWithoutDescriptorsesInput {
+    input EventUpdateWithWhereUniqueWithoutDescriptorsInput {
       where: EventWhereUniqueInput!
-      data: EventUpdateWithoutDescriptorsesDataInput!
+      data: EventUpdateWithoutDescriptorsDataInput!
     }
 
     input EventUpdateWithWhereUniqueWithoutIndicatorsInput {
@@ -593,10 +593,10 @@ module.exports = {
       create: EventCreateWithoutCategoriesInput!
     }
 
-    input EventUpsertWithWhereUniqueWithoutDescriptorsesInput {
+    input EventUpsertWithWhereUniqueWithoutDescriptorsInput {
       where: EventWhereUniqueInput!
-      update: EventUpdateWithoutDescriptorsesDataInput!
-      create: EventCreateWithoutDescriptorsesInput!
+      update: EventUpdateWithoutDescriptorsDataInput!
+      create: EventCreateWithoutDescriptorsInput!
     }
 
     input EventUpsertWithWhereUniqueWithoutIndicatorsInput {
@@ -645,9 +645,9 @@ module.exports = {
       description_not_starts_with: String
       description_ends_with: String
       description_not_ends_with: String
-      descriptorses_every: DescriptorsWhereInput
-      descriptorses_some: DescriptorsWhereInput
-      descriptorses_none: DescriptorsWhereInput
+      descriptors_every: DescriptorWhereInput
+      descriptors_some: DescriptorWhereInput
+      descriptors_none: DescriptorWhereInput
       eventDate: DateTime
       eventDate_not: DateTime
       eventDate_in: [DateTime!]
@@ -1130,22 +1130,22 @@ module.exports = {
       ): Category!
       deleteCategory(where: CategoryWhereUniqueInput!): Category
       deleteManyCategories(where: CategoryWhereInput): BatchPayload!
-      createDescriptors(data: DescriptorsCreateInput!): Descriptors!
-      updateDescriptors(
-        data: DescriptorsUpdateInput!
-        where: DescriptorsWhereUniqueInput!
-      ): Descriptors
-      updateManyDescriptorses(
-        data: DescriptorsUpdateManyMutationInput!
-        where: DescriptorsWhereInput
+      createDescriptor(data: DescriptorCreateInput!): Descriptor!
+      updateDescriptor(
+        data: DescriptorUpdateInput!
+        where: DescriptorWhereUniqueInput!
+      ): Descriptor
+      updateManyDescriptors(
+        data: DescriptorUpdateManyMutationInput!
+        where: DescriptorWhereInput
       ): BatchPayload!
-      upsertDescriptors(
-        where: DescriptorsWhereUniqueInput!
-        create: DescriptorsCreateInput!
-        update: DescriptorsUpdateInput!
-      ): Descriptors!
-      deleteDescriptors(where: DescriptorsWhereUniqueInput!): Descriptors
-      deleteManyDescriptorses(where: DescriptorsWhereInput): BatchPayload!
+      upsertDescriptor(
+        where: DescriptorWhereUniqueInput!
+        create: DescriptorCreateInput!
+        update: DescriptorUpdateInput!
+      ): Descriptor!
+      deleteDescriptor(where: DescriptorWhereUniqueInput!): Descriptor
+      deleteManyDescriptors(where: DescriptorWhereInput): BatchPayload!
       createEvent(data: EventCreateInput!): Event!
       updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
       updateManyEvents(
@@ -1246,25 +1246,25 @@ module.exports = {
         first: Int
         last: Int
       ): CategoryConnection!
-      descriptors(where: DescriptorsWhereUniqueInput!): Descriptors
-      descriptorses(
-        where: DescriptorsWhereInput
-        orderBy: DescriptorsOrderByInput
+      descriptor(where: DescriptorWhereUniqueInput!): Descriptor
+      descriptors(
+        where: DescriptorWhereInput
+        orderBy: DescriptorOrderByInput
         skip: Int
         after: String
         before: String
         first: Int
         last: Int
-      ): [Descriptors]!
-      descriptorsesConnection(
-        where: DescriptorsWhereInput
-        orderBy: DescriptorsOrderByInput
+      ): [Descriptor]!
+      descriptorsConnection(
+        where: DescriptorWhereInput
+        orderBy: DescriptorOrderByInput
         skip: Int
         after: String
         before: String
         first: Int
         last: Int
-      ): DescriptorsConnection!
+      ): DescriptorConnection!
       event(where: EventWhereUniqueInput!): Event
       events(
         where: EventWhereInput
@@ -1518,9 +1518,9 @@ module.exports = {
       category(
         where: CategorySubscriptionWhereInput
       ): CategorySubscriptionPayload
-      descriptors(
-        where: DescriptorsSubscriptionWhereInput
-      ): DescriptorsSubscriptionPayload
+      descriptor(
+        where: DescriptorSubscriptionWhereInput
+      ): DescriptorSubscriptionPayload
       event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
       indicator(
         where: IndicatorSubscriptionWhereInput
