@@ -1113,7 +1113,15 @@ module.exports = {
 
     scalar Long
 
+    input DescriptorsInput {
+      descriptors: DescriptorUpdateManyWithoutEventsInput
+    }
+
     type Mutation {
+      connectDescriptors(
+        data: DescriptorsInput
+        where: EventWhereUniqueInput!
+      ): Event
       createCategory(data: CategoryCreateInput!): Category!
       updateCategory(
         data: CategoryUpdateInput!

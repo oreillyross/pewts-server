@@ -43,6 +43,30 @@ const resolvers = {
     createDescriptor: async (_, { data }) => {
       return await prisma.createDescriptor({ tag: data.tag });
     },
+    connectDescriptors: async (_, { data, where }) => {
+      return await prisma.createEvent({
+        title: "my new event",
+        description: "my new description",
+        crawlDate: new Date().toISOString(),
+        descriptors: {
+          create: {
+            tag: "Roo"
+          }
+        }
+      });
+    },
+    updateEvent: async (_, { data, where }) => {
+      return await prisma.updateEvent({
+        data: {
+          title: data.title,
+          description: data.description,
+          crawlDate: data.crawlDate,
+          source: "my source",
+          descriptors: { create: { tag: "Roo" } }
+        },
+        where: { id: where.id }
+      });
+    },
     updateKeyword: async (_, { data, where }) => {
       return await prisma.updateKeyword({
         data: { searchterm: data.searchterm },
