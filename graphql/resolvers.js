@@ -17,7 +17,8 @@ const resolvers = {
     keywords: async () => await prisma.keywords({}),
     descriptors: async () => await prisma.descriptors({}),
     events: async orderBy => await prisma.events({ orderBy: "title_ASC" }),
-    event: async (_, { where }) => await prisma.event({ id: where.id })
+    event: async (_, { where }) => await prisma.event({ id: where.id }),
+    keyword: async (_, { where }) => await prisma.keyword({ id: where.id })
   },
 
   Mutation: {
